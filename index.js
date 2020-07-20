@@ -13,9 +13,9 @@ app.use(cors({
 }));
 
 // api routes
-app.get("/api", (req, res) => {
+app.get("/api/rsstojson", (req, res) => {
 
-  //
+  // library to convert RSS to JSON
   Feed.load("https://medium.com/feed/@manuellaraa").then((rss) => {
     // returns result as object
     res.send(rss);
