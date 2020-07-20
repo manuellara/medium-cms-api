@@ -4,19 +4,21 @@ var cors = require('cors')
 const app = express();
 
 // allows us to receive json data from client
-// app.use(express.json({ limit: "1mb" }));
+app.use(express.json({ limit: "1mb" }));
 
-// Cross Origin Resourse Sharing package 
+// Cross Origin Resourse Sharing options 
 app.use(cors({
     // option to allow which domains through
     // origin: 'https://manuellara.com'
 }));
 
 // api routes
-app.get("/api/rsstojson", (req, res) => {
+app.post("/api/rsstojson", (req, res) => {
 
-  // library to convert RSS to JSON
-  Feed.load("https://medium.com/feed/@manuellaraa").then((rss) => {
+  const username = req.body.username
+
+  // function to convert RSS to JSON
+  Feed.load(`https://medium.com/feed/@${username}`).then((rss) => {
     // returns result as object
     res.send(rss);
   })
