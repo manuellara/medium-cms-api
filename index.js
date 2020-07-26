@@ -1,10 +1,14 @@
-const express = require("express");
-var Feed = require("rss-to-json");
+const express = require('express');
+var Feed = require('rss-to-json');
 var cors = require('cors')
 const app = express();
 
+// ports for server to run on
+const PORT = 3000;
+const HOST = '0.0.0.0';
+
 // allows us to receive json data from client
-app.use(express.json({ limit: "1mb" }));
+app.use(express.json({ limit: '1mb' }));
 
 // Cross Origin Resourse Sharing options 
 app.use(cors({
@@ -29,6 +33,6 @@ app.post("/api/rsstojson", (req, res) => {
 });
 
 // app listening 
-app.listen(3000, () => {
-  console.log("Server listening on port 3000...");
+app.listen( PORT, HOST, () => {
+  console.log(`Running on http://${HOST}:${PORT}`);
 });
